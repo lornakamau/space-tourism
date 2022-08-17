@@ -12,11 +12,11 @@ function  Destinations() {
   }
   return (
     <>
-    <div className="bg-destination-mobile md:bg-destination-tablet lg:bg-destination-desktop h-fit lg:h-screen bg-cover bg-no-repeat w-full flex text-white font-normal">
+    <div className="bg-destination-mobile md:bg-destination-tablet lg:bg-destination-desktop h-screen bg-cover bg-no-repeat w-full flex text-white font-normal bg-fixed">
       <div className="w-full">
         <div className="lg:ml-[6rem] mt-[15%] md:mt-[12%] lg:mt-[12%] px-[10%] md:px-[2rem] py-[5%] lg:p-0 text-center lg:text-left">
           <p className="uppercase sm:text-center md:text-left font-barlowCondensed text-[16px] md:text-[20px] lg:text-[28px] leading-[19.2px] md:leading-[24px] lg:leading-[33.6px] tracking-[2.7px] md:tracking-[3.38px] lg:tracking-[4.72px]">
-            <span className="opacity-40">01</span> Pick your destination
+            <span className="opacity-40 font-[700] mix-blend-normal">01</span> Pick your destination
           </p>
           <div className="flex flex-col lg:flex-row gap-[1rem] md:gap-[2rem] lg:gap-[0%] sm:items-center w-full mx-auto h-full mt-[1rem] lg:mt-[3rem]">
             <div className="w-full lg:w-1/2 text-center lg:text-left">

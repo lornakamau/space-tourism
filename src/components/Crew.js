@@ -12,12 +12,12 @@ function Crew() {
   }
   return (
     <>
-      <div className="bg-destination-mobile md:bg-destination-tablet lg:bg-destination-desktop h-screen bg-cover bg-no-repeat w-full flex text-white font-normal">
+      <div className="bg-destination-mobile md:bg-destination-tablet lg:bg-destination-desktop h-screen bg-cover bg-no-repeat w-full flex text-white font-normal bg-fixed">
         <div className="w-full relative">
           <div className="lg:ml-[6rem] mt-[15%] md:mt-[12%] lg:mt-[12%] px-[10%] md:px-[2rem] py-[5%] lg:p-0 text-center lg:text-left">
             <div className="w-full mx-auto mt-[1rem] lg:mt-[3rem] lg:absolute">
               <p className="uppercase sm:text-center md:text-left font-barlowCondensed text-[16px] md:text-[20px] lg:text-[28px] leading-[19.2px] md:leading-[24px] lg:leading-[33.6px] tracking-[2.7px] md:tracking-[3.38px] lg:tracking-[4.72px]">
-                <span className="opacity-40 mix-blend-normal">02</span> meet
+                <span className="opacity-40 mix-blend-normal font-[700]">02</span> meet
                 your crew
               </p>
               <div className="flex flex-col-reverse lg:flex-row gap-[0rem] md:gap-[2rem] lg:gap-[0%] sm:items-center">
@@ -39,7 +39,7 @@ function Crew() {
                         onClick={() => getActive(id)}
                         key={id}
                         className={
-                          "h-[15px] w-[15px] bg-[#FFFFFF] opacity-[0.17] hover:opacity-50 rounded-full mix-blend-normal " +
+                          "cursor-pointer h-[15px] w-[15px] bg-[#FFFFFF] opacity-[0.17] hover:opacity-50 rounded-full mix-blend-normal " +
                           (active.id === id ? "opacity-100" : "")
                         }
                       ></div>
