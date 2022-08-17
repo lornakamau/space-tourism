@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Bellefair&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed&family=Bellefair&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.active > .nav-link, .active > .nav-link:hover{
-    border-color: #fff;
+.active > .nav-link, .active > .nav-link:hover, .no-hover-border, .no-hover-border:hover{
+    border-color: #fff !important;
 }
 
 .overlay {
-background-color: #171924;
+    background-color: #0B0D17;
+/* background-color: #171924; */
 }
 
 /* if backdrop support: very transparent and blurred */
