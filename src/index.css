@@ -3,3 +3,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active > .nav-link, .active > .nav-link:hover{
+    border-color: #fff;
+}
+
+.overlay {
+background-color: #171924;
+}
+
+/* if backdrop support: very transparent and blurred */
+@supports ((-webkit-backdrop-filter: blur(8.7px)) or (backdrop-filter: blur(8.7px))) {
+.overlay {
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.18);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.7px);
+-webkit-backdrop-filter: blur(8.7px);
+}
+}
