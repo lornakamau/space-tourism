@@ -1,5 +1,6 @@
 import logo from "../assets/shared/logo.svg";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Ul = styled.ul`
   list-style: none;
@@ -40,19 +41,19 @@ const Navbar = (props) => {
     {
       id: 2,
       name: "Destinations",
-      link: "/",
+      link: "/destinations",
       style: "",
     },
     {
       id: 3,
       name: "crew",
-      link: "/",
+      link: "/crew",
       style: "",
     },
     {
       id: 4,
       name: "technology",
-      link: "/",
+      link: "/technology",
       style: "pr-2",
     },
   ];
@@ -65,7 +66,7 @@ const Navbar = (props) => {
     alignContent: "center",
   };
   const overlayStyle = {
-    background:  `rgba(255, 255, 255, 0.06)`,
+    background: `rgba(255, 255, 255, 0.06)`,
     boxShadow: `0 4px 30px rgba(0, 0, 0, 0.1)`,
     backdropFilter: `blur(8.9px)`,
   }
@@ -86,23 +87,26 @@ const Navbar = (props) => {
               className="pl-8 lg:pl-16 pr-0 lg:pr-[10rem] text-[14px] lg:text-[16px] h-[4rem]  md:h-[5.5rem] lg:h-[6.5rem]"
             >
               {links.map(({ id, name, link, style }) => (
-                <li
-                  className={`uppercase active mx-7 my-auto cursor-pointer flex h-full items-center md:${style} border-b-[3px] border-transparent hover:border-white hover:border-opacity-25`}
-                  // border-opacity-95
-                  key={id}
-                >
-                  <span className="font-bold mr-4 md:hidden lg:block">
-                    0{id - 1}
-                  </span>{" "}
-                  {name}
-                </li>
+                <Link to={link}>
+                  <li
+                    className={`uppercase active mx-7 my-auto cursor-pointer flex h-full items-center md:${style} border-b-[3px] border-transparent hover:border-white hover:border-opacity-25`}
+                    // border-opacity-95
+                    key={id}
+                  >
+                    <span className="font-bold mr-4 md:hidden lg:block">
+                      0{id - 1}
+                    </span>{" "}
+                    {name}
+                  </li>
+                </Link>
               ))}
             </ul>
           </div>
         </div>
-        <div className="lg:hidden">
+        <div className="md:hidden">
           <Ul open={open} style={overlayStyle}>
-          {links.map(({ id, name, link, style }) => (
+            {links.map(({ id, name, link, style }) => (
+              <Link to={link}>
                 <li
                   className={`uppercase active pl-10 py-4 my-[0.5rem] cursor-pointer flex items-center md:${style} border-r-[5px] border-transparent hover:border-white hover:border-opacity-25`}
                   // border-opacity-95
@@ -113,7 +117,8 @@ const Navbar = (props) => {
                   </span>{" "}
                   {name}
                 </li>
-              ))}
+              </Link>
+            ))}
           </Ul>
         </div>
       </div>
