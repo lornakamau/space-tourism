@@ -7,9 +7,9 @@ function Home() {
 
   return (
     <>
-    <div
-      className="bg-home-mobile md:bg-home-tablet lg:bg-home-desktop h-screen bg-cover bg-no-repeat w-full flex bg-fixed"
-    >
+      <div
+        className="bg-home-mobile md:bg-home-tablet lg:bg-home-desktop h-screen bg-cover bg-no-repeat w-full flex bg-fixed overflow-y-auto"
+      >
         <div className="w-full">
           <div className="lg:ml-[6rem] mt-[25%] md:mt-[15%] lg:mt-[18%] px-[10%] py-[5%] lg:p-0">
             <div className="w-full mx-auto text-white">
@@ -29,21 +29,21 @@ function Home() {
                   </p>
                 </div>
                 <div className="h-[18rem] w-[18rem] md:h-[22rem] md:w-[22rem] lg:h-[33rem] lg:w-[33rem] mx-auto">
-                <NavLink to="/destinations">
-                <div className="relative">
-                    <div className={`absolute top-0 left-0 rounded-full bg-[#FFFFFF] mix-blend-normal items-center justify-center opacity-10 cursor-pointer  transition-[width] duration-[1s] ease-linear ${hovered ?  'hidden': 'flex h-[18rem] w-[18rem] md:h-[22rem] md:w-[22rem] lg:h-[33rem] lg:w-[33rem]'}`}></div>
-                    <div className="absolute left-[3rem] md:left-[3.5rem] lg:left-[5.5rem] top-[3rem] md:top-[3.5rem] lg:top-[5.5rem] h-[12rem] w-[12rem] md:h-[15rem] md:w-[15rem] lg:h-[22rem] lg:w-[22rem] rounded-full uppercase bg-white text-black flex items-center cursor-pointer justify-center font-normal text-[20px] md:text-[32px] tracking-[2px] leading-[37px] font-bellefair" onMouseEnter={toggleHover}
-                      onMouseLeave={toggleHover}>
-                      explore
+                  <NavLink to="/destinations">
+                    <div className="relative">
+                      <div className={`absolute top-0 left-0 rounded-full bg-[#FFFFFF] mix-blend-normal items-center justify-center opacity-10 cursor-pointer  transition-[width] duration-[1s] ease-linear ${hovered ? 'hidden' : 'flex h-[18rem] w-[18rem] md:h-[22rem] md:w-[22rem] lg:h-[33rem] lg:w-[33rem]'}`}></div>
+                      <div className="absolute left-[3rem] md:left-[3.5rem] lg:left-[5.5rem] top-[3rem] md:top-[3.5rem] lg:top-[5.5rem] h-[12rem] w-[12rem] md:h-[15rem] md:w-[15rem] lg:h-[22rem] lg:w-[22rem] rounded-full uppercase bg-white text-black flex items-center cursor-pointer justify-center font-normal text-[20px] md:text-[32px] tracking-[2px] leading-[37px] font-bellefair" onMouseEnter={toggleHover}
+                        onMouseLeave={toggleHover}>
+                        explore
+                      </div>
                     </div>
-                  </div>
                   </NavLink>
                 </div>
               </div>
             </div>
           </div>
         </div>
-    </div>
+      </div>
     </>
   );
 }

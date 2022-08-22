@@ -30,7 +30,7 @@ function Technology() {
 
   return (
     <>
-      <div className="bg-technology-mobile md:bg-technology-tablet lg:bg-technology-desktop h-screen bg-cover bg-no-repeat w-full flex text-white font-normal bg-fixed">
+      <div className="bg-technology-mobile md:bg-technology-tablet lg:bg-technology-desktop h-screen bg-cover bg-no-repeat w-full flex text-white font-normal bg-fixed overflow-y-auto">
         <div className="w-full relative">
         <div className="hidden">{count}</div>
           <div className="lg:ml-[6rem] mt-[15%] md:mt-[12%] lg:mt-[12%] py-[5%] lg:p-0 text-center lg:text-left">

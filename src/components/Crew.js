@@ -6,7 +6,6 @@ function Crew() {
   const [active, setActive] = useState(crew[0]);
   const [count, setCount] = useState(0);
   const [intervalId, setIntervalId] = useState(0);
-
   const handleClick = (timed) => {
     if (intervalId) {
       clearInterval(intervalId);
@@ -36,7 +35,7 @@ function Crew() {
 
   return (
     <>
-      <div className="bg-destination-mobile md:bg-destination-tablet lg:bg-destination-desktop h-screen bg-cover bg-no-repeat w-full flex text-white font-normal bg-fixed  md:overflow-auto lg:overflow-y-[unset]">
+      <div className="bg-destination-mobile md:bg-destination-tablet lg:bg-destination-desktop h-screen bg-cover bg-no-repeat w-full flex text-white font-normal bg-fixed overflow-y-auto">
         <div className="w-full relative md:h-screen lg:h-[unset]">
           <div className="lg:ml-[6rem] mt-[15%] md:mt-[12%] lg:mt-[12%] px-[10%] md:px-[2rem] py-[5%] md:pb-0 lg:p-0 text-center lg:text-left">
             <div className="w-full mx-auto mt-[1rem] lg:mt-[3rem] lg:h-max-content">

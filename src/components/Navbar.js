@@ -2,47 +2,11 @@ import logo from "../assets/shared/logo.svg";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import React, { useState } from 'react';
+import closed from '../assets/shared/icon-close.svg';
+import opened from '../assets/shared/icon-hamburger.svg';
 
 const Navbar = (props) => {
   const [open, setOpen] = useState(false);
-
-  const StyledBurger = styled.div`
-  width: 2rem;
-  height: 2rem;
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  z-index: 120;
-  display: none;
-
-  @media (max-width: 768px) {
-    display: flex;
-    justify-content: space-around;
-    flex-flow: column nowrap;
-  }
-
-  div {
-    width: 2rem;
-    height: 2px;
-    background-color: ${({ open }) => open ? '#D0D6F9' : '#D0D6F9'};
-    border-radius: 10px;
-    transform-origin: 0px;
-    transition: all 0.2s linear;
-
-    &:nth-child(1) {
-      transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
-    }
-
-    &:nth-child(2) {
-      transform: ${({ open }) => open ? 'translateX(100%)' : 'translateX(0)'};
-      opacity: ${({ open }) => open ? 0 : 1};
-    }
-
-    &:nth-child(3) {
-      transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
-    }
-  }
-`;
   const links = [
     {
       id: 1,
@@ -108,7 +72,7 @@ const Navbar = (props) => {
           <img
             src={logo}
             alt="logo"
-            className="w-[3rem] lg:w-[4rem] mx-4 lg:mx-8"
+            className="w-[3rem] lg:w-[4rem] mx-4 lg:mx-8 mt-[25px] md:mt-0"
           />
           <div className="h-[1px] bg-[#979797] w-full -mr-[2rem] z-20 hidden lg:block"></div>
           <div className="hidden md:block justify-self-end ml-auto">
@@ -121,7 +85,6 @@ const Navbar = (props) => {
                   <NavLink to={link} key={id} className={`cursor-pointer`}>
                     <li
                       className={`nav-link uppercase mx-7 my-auto flex h-full items-center md:${style} border-b-[3px] border-transparent hover:border-white hover:border-opacity-25`}
-                    // border-opacity-95
                     >
                       <span className="font-bold mr-4 md:hidden lg:block">
                         0{id - 1}
@@ -134,28 +97,35 @@ const Navbar = (props) => {
             </div>
           </div>
           <div className="md:hidden">
-            <Ul open={open} className="overlay" >
+            <div open={open} className={"overlay md:hidden list-none fixed flex-nowrap flex-row top-0 right-0 h-screen w-[300px] pt-[3.5rem] transition-all duration-[0.3s] ease-in-out " + (open? 'z-[100] translate-x-[0%]' : 'z-0 translate-x-[100%]') }>
               {links.map(({ id, name, link, styleSm }) => (
                 <NavLink to={link} key={id} onClick={() => setOpen(!open)} className={`cursor-pointer`}>
                   <li
-                    className={`nav-link uppercase pl-10 py-4 my-[0.5rem] flex items-center ${styleSm} border-r-[5px] border-transparent hover:border-white hover:border-opacity-25`}
-                  // border-opacity-95
+                    className={`text-bold text-white nav-link uppercase pl-10 py-4 my-[0.5rem] flex items-center ${styleSm} border-r-[5px] border-transparent hover:border-white hover:border-opacity-25`}
                   >
-                    <span className="font-bold mr-4">
+                    <span className="font-[700] mr-4">
                       0{id - 1}
                     </span>{" "}
                     {name}
                   </li>
                 </NavLink>
               ))}
-            </Ul>
+            </div>
           </div>
         </div>
-        <StyledBurger open={open} onClick={() => setOpen(!open)}>
-          <div />
-          <div />
-          <div />
-        </StyledBurger>
+        {open ?
+          <img
+            src={closed}
+            alt="menu close"
+            className="w-[2rem] h-[2rem] cursor-pointer fixed top-[25px] right-[20px] z-[120] md:hidden"
+            onClick={() => setOpen(!open)}
+          /> :
+          <img
+            src={opened}
+            alt="menu open"
+            className="w-[2rem] h-[2rem] cursor-pointer fixed top-[25px] right-[20px] z-[120] md:hidden"
+            onClick={() => setOpen(!open)}
+          />}
       </div>
     </>
   );
