@@ -38,6 +38,7 @@ function Crew() {
     <>
       <div className="bg-destination-mobile md:bg-destination-tablet lg:bg-destination-desktop h-screen bg-cover bg-no-repeat w-full flex text-white font-normal bg-fixed  md:overflow-auto lg:overflow-y-[unset]">
         <div className="w-full relative md:h-screen lg:h-[unset]">
+      <div className="hidden">{count}</div>
           <div className="lg:ml-[6rem] mt-[15%] md:mt-[12%] lg:mt-[12%] px-[10%] md:px-[2rem] py-[5%] md:pb-0 lg:p-0 text-center lg:text-left">
             <div className="w-full mx-auto mt-[1rem] lg:mt-[3rem] lg:h-max-content">
               <p className="uppercase sm:text-center md:text-left font-barlowCondensed text-[16px] md:text-[20px] lg:text-[28px] leading-[19.2px] md:leading-[24px] lg:leading-[33.6px] tracking-[2.7px] md:tracking-[3.38px] lg:tracking-[4.72px]">
