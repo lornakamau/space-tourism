@@ -1,15 +1,47 @@
 import data from "../data/data.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const myTechnology = data.technology;
 
 function Technology() {
   const [active, setActive] = useState(myTechnology[0]);
+  const [count, setCount] = useState(0);
+  const [intervalId, setIntervalId] = useState(0);
 
-  function getActive(id) {
-    let found = myTechnology.find((el) => el.id === id);
-    setActive(found);
-  }
+  const handleClick = (timed) => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      setIntervalId(0);
+      return;
+    }
+    // let myCount = parseInt(timed, 10);
+    // if (timed){
+    //   if(myCount === 0){
+    //     myCount = myTechnology.length - 1;
+    //   } else {
+    //     myCount = myCount - 1;
+    //   }
+    //   setCount(myCount + 1);
+    //   let found = myTechnology.find((el) => el.id === myCount);
+    //   setActive(found);
+    //   return;
+    // }
+    const newIntervalId = setInterval(() => {
+      setCount((prevCount) => {
+        let id;
+        prevCount > myTechnology.length - 1 ? (id = 0) : (id = prevCount);
+        let found = myTechnology.find((el) => el.id === id);
+        setActive(found);
+        return id + 1;
+      });
+    }, 5000);
+    setIntervalId(newIntervalId);
+  };
+
+  useEffect(() => {
+    handleClick();
+  }, [count]);
+
   return (
     <>
       <div className="bg-technology-mobile md:bg-technology-tablet lg:bg-technology-desktop h-screen bg-cover bg-no-repeat w-full flex text-white font-normal bg-fixed">
@@ -17,7 +49,10 @@ function Technology() {
           <div className="lg:ml-[6rem] mt-[15%] md:mt-[12%] lg:mt-[12%] py-[5%] lg:p-0 text-center lg:text-left">
             <div className="w-full mx-auto mt-[1rem] lg:mt-[3rem] lg:absolute">
               <p className="md:pl-[2rem] lg:pl-0 uppercase sm:text-center md:text-left font-barlowCondensed text-[16px] md:text-[20px] lg:text-[28px] leading-[19.2px] md:leading-[24px] lg:leading-[33.6px] tracking-[2.7px] md:tracking-[3.38px] lg:tracking-[4.72px]">
-                <span className="opacity-40 mix-blend-normal font-[700]">03</span> space launch 101
+                <span className="opacity-40 mix-blend-normal font-[700]">
+                  03
+                </span>{" "}
+                space launch 101
               </p>
               <div className="flex flex-col-reverse lg:flex-row sm:items-center">
                 <div className="w-full lg:w-1/2 text-center lg:text-left flex flex-col-reverse lg:flex-row-reverse md:gap-2">
@@ -35,25 +70,29 @@ function Technology() {
                   <div className="flex lg:flex-col gap-[1.5rem] justify-between w-fit lg:absolute bottom-0 lg:bottom-[unset] lg:top-[10rem] lg:left-0 mx-auto my-[1.5rem] lg:my-0">
                     {myTechnology.map(({ id }) => (
                       <div
-                        onClick={() => getActive(id)}
+                        onClick={() => handleClick(`${id}`)}
                         key={id}
                         className={
                           "cursor-pointer h-[40px] w-[40px] md:h-[60px] md:w-[60px] lg:h-[80px] lg:w-[80px] border-[0.5px] border-solid border-[#ffffff44] hover:border-[#FFFFFF] rounded-full flex items-center justify-center text-[16px] leading-[18.34px] md:text-[24px] md:leading-[27.5px] font-bellefair " +
-                          (active.id === id ? "bg-[#FFFFFF] text-black" : "text-[#FFFFFF]")
+                          (active.id === id
+                            ? "bg-[#FFFFFF] text-black"
+                            : "text-[#FFFFFF]")
                         }
-                      >{id}</div>
+                      >
+                        {id}
+                      </div>
                     ))}
                   </div>
                 </div>
                 <div className="w-full lg:w-1/2 text-center lg:text-left">
                   <img
                     className="lg:hidden h-[170px] w-screen md:h-[310px] mx-auto mt-[2rem] md:mt-[3.5rem] object-cover"
-                    src={active.images.landscape}
+                    src={active.images?.landscape}
                     alt={active.name}
                   />
                   <img
                     className="hidden lg:block h-[527px] w-[520px] ml-auto my-auto object-contain"
-                    src={active.images.portrait}
+                    src={active.images?.portrait}
                     alt={active.name}
                   />
                 </div>

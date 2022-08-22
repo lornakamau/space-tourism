@@ -1,30 +1,48 @@
 import logo from "../assets/shared/logo.svg";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import React, { useState } from 'react';
 
-const Ul = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-flow: row nowrap;
+const Navbar = (props) => {
+  const [open, setOpen] = useState(false);
+
+  const StyledBurger = styled.div`
+  width: 2rem;
+  height: 2rem;
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  z-index: 120;
+  display: none;
+
   @media (max-width: 768px) {
+    display: flex;
+    justify-content: space-around;
     flex-flow: column nowrap;
-    position: fixed;
-    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
-    z-index: ${({ open }) => (open ? "100" : "0")};
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 300px;
-    padding-top: 3.5rem;
-    transition: all 0.3s ease-in-out;
-    li {
-      color: #fff;
+  }
+
+  div {
+    width: 2rem;
+    height: 2px;
+    background-color: ${({ open }) => open ? '#D0D6F9' : '#D0D6F9'};
+    border-radius: 10px;
+    transform-origin: 0px;
+    transition: all 0.2s linear;
+
+    &:nth-child(1) {
+      transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
+    }
+
+    &:nth-child(2) {
+      transform: ${({ open }) => open ? 'translateX(100%)' : 'translateX(0)'};
+      opacity: ${({ open }) => open ? 0 : 1};
+    }
+
+    &:nth-child(3) {
+      transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
     }
   }
 `;
-
-const Navbar = (props) => {
-  const open = props.open;
   const links = [
     {
       id: 1,
@@ -63,10 +81,29 @@ const Navbar = (props) => {
     display: "flex",
     alignContent: "center",
   };
-
+  const Ul = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    position: fixed;
+    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
+    z-index: ${({ open }) => (open ? "100" : "0")};
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    padding-top: 3.5rem;
+    transition: all 0.3s ease-in-out;
+    li {
+      color: #fff;
+    }
+  }
+`;
   return (
     <>
-      <div className="w-full relative" id="myNav">
+      <div className="w-full relative z-[9999]" id="myNav">
         <div className="absolute top-0 left-0 h-[4rem] md:h-[5.5rem] lg:h-[6.5rem] mt-0 lg:mt-8 flex items-center text-white w-full">
           <img
             src={logo}
@@ -81,10 +118,10 @@ const Navbar = (props) => {
                 className="pl-8 lg:pl-16 pr-0 lg:pr-[10rem] text-[14px] lg:text-[16px] h-[4rem]  md:h-[5.5rem] lg:h-[6.5rem]"
               >
                 {links.map(({ id, name, link, style }) => (
-                  <NavLink to={link} key={id} activeclassname="nav-active">
+                  <NavLink to={link} key={id} className={`cursor-pointer`}>
                     <li
-                      className={`nav-link uppercase mx-7 my-auto cursor-pointer flex h-full items-center md:${style} border-b-[3px] border-transparent hover:border-white hover:border-opacity-25`}
-                      // border-opacity-95
+                      className={`nav-link uppercase mx-7 my-auto flex h-full items-center md:${style} border-b-[3px] border-transparent hover:border-white hover:border-opacity-25`}
+                    // border-opacity-95
                     >
                       <span className="font-bold mr-4 md:hidden lg:block">
                         0{id - 1}
@@ -99,10 +136,10 @@ const Navbar = (props) => {
           <div className="md:hidden">
             <Ul open={open} className="overlay" >
               {links.map(({ id, name, link, styleSm }) => (
-                <NavLink to={link} key={id} activeclassname="nav-active">
+                <NavLink to={link} key={id} onClick={() => setOpen(!open)} className={`cursor-pointer`}>
                   <li
-                    className={`nav-link uppercase pl-10 py-4 my-[0.5rem] cursor-pointer flex items-center ${styleSm} border-r-[5px] border-transparent hover:border-white hover:border-opacity-25`}
-                    // border-opacity-95
+                    className={`nav-link uppercase pl-10 py-4 my-[0.5rem] flex items-center ${styleSm} border-r-[5px] border-transparent hover:border-white hover:border-opacity-25`}
+                  // border-opacity-95
                   >
                     <span className="font-bold mr-4">
                       0{id - 1}
@@ -114,9 +151,14 @@ const Navbar = (props) => {
             </Ul>
           </div>
         </div>
+        <StyledBurger open={open} onClick={() => setOpen(!open)}>
+          <div />
+          <div />
+          <div />
+        </StyledBurger>
       </div>
     </>
   );
 };
 
-export default Navbar;
+export default Navbar
