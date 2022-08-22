@@ -32,6 +32,10 @@ module.exports = {
           '0%' : { opacity: 0.1},
           '100%': { opacity: 1 }
         },
+        fadeInRole : {
+          '0%' : { opacity: 0.1},
+          '100%': { opacity: 0.5 }
+        },
         scaleInLg : {
           '0%' : {transform: 'scale(0.8)', transform: 'translateX(250px)'},
           '100%': { transform: 'scale(1)'}
@@ -39,6 +43,7 @@ module.exports = {
       },
       animation: {
         fadeIn: 'fadeIn 2s ease-in',
+        fadeInRole: 'fadeInRole 2s ease-in',
         scaleInLg : 'scaleInLg 2s ease-in'
       }
     }
