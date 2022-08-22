@@ -28,16 +28,20 @@ module.exports = {
         'technology-desktop': "url('./assets/technology/background-technology-desktop.jpg')",
       },
       keyframes: {
-        wiggle: {
-          '0%': { transform: 'width: 0' },
-          '50%': { transform: 'width: 50%' },
-          '100%': { transform: 'width: 100%' },
+        fadeIn : {
+          '0%' : { opacity: 0.1},
+          '100%': { opacity: 1 }
+        },
+        scaleInLg : {
+          '0%' : {transform: 'scale(0.8)', transform: 'translateX(250px)'},
+          '100%': { transform: 'scale(1)'}
         }
       },
       animation: {
-        wiggle: '10s',
+        fadeIn: 'fadeIn 2s ease-in',
+        scaleInLg : 'scaleInLg 2s ease-in'
       }
-    },
+    }
   },
   plugins: [],
 }

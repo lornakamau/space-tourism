@@ -7,7 +7,6 @@ function Technology() {
   const [active, setActive] = useState(myTechnology[0]);
   const [count, setCount] = useState(0);
   const [intervalId, setIntervalId] = useState(0);
-
   const handleClick = (timed) => {
     if (intervalId) {
       clearInterval(intervalId);
@@ -34,13 +33,13 @@ function Technology() {
         setActive(found);
         return id + 1;
       });
-    }, 5000);
+    }, 7000);
     setIntervalId(newIntervalId);
   };
 
   useEffect(() => {
     handleClick();
-  }, [count]);
+  }, []);
 
   return (
     <>
@@ -55,15 +54,16 @@ function Technology() {
                 space launch 101
               </p>
               <div className="flex flex-col-reverse lg:flex-row sm:items-center">
+                <div className="hidden">{count}</div>
                 <div className="w-full lg:w-1/2 text-center lg:text-left flex flex-col-reverse lg:flex-row-reverse md:gap-2">
                   <div className="lg:absolute top-[1rem] lg:top-[5rem] left-0 w-full lg:w-4/6 lg:left-1/3 lg:-translate-x-1/3">
                     <div className="text-[#D0D6F9] font-barlowCondensed text-[14px] md:text-[16px] lg:text-[16px] uppercase lg:mt-[5rem] leading-[16.8px] md:leading-[19.2px] lg:leading-[19.2px] tracking-[2.36px] md:tracking-[2.7px]">
                       the terminology...
                     </div>
-                    <div className="font-bellefair text-[24px] md:text-[40px] lg:text-[56px] uppercase mt-[0.5rem] lg:mt-[1.5rem] mb-[2rem] leading-[27.5px] md:leading-[45.84px] lg:leading-[64.18px]">
+                    <div key={active.name} className="animate-fadeIn font-bellefair text-[24px] md:text-[40px] lg:text-[56px] uppercase mt-[0.5rem] lg:mt-[1.5rem] mb-[2rem] leading-[27.5px] md:leading-[45.84px] lg:leading-[64.18px]">
                       {active.name}
                     </div>
-                    <p className="font-barlow px-[2rem] lg:px-0 w-full md:w-11/12 lg:w-1/2 mx-0 md:mx-auto lg:mx-0 text-[#D0D6F9] text-[15px] md:text-[16px] lg:text-[18px] leading-[25px] lg:leading-[32px] md:leading-[28px]">
+                    <p key={active.description} className="animate-fadeIn font-barlow px-[2rem] lg:px-0 w-full md:w-11/12 lg:w-1/2 mx-0 md:mx-auto lg:mx-0 text-[#D0D6F9] text-[15px] md:text-[16px] lg:text-[18px] leading-[25px] lg:leading-[32px] md:leading-[28px]">
                       {active.description}
                     </p>
                   </div>
@@ -73,7 +73,7 @@ function Technology() {
                         onClick={() => handleClick(`${id}`)}
                         key={id}
                         className={
-                          "cursor-pointer h-[40px] w-[40px] md:h-[60px] md:w-[60px] lg:h-[80px] lg:w-[80px] border-[0.5px] border-solid border-[#ffffff44] hover:border-[#FFFFFF] rounded-full flex items-center justify-center text-[16px] leading-[18.34px] md:text-[24px] md:leading-[27.5px] font-bellefair " +
+                          "transition-['background-color'] duration-[1500ms] ease-in cursor-pointer h-[40px] w-[40px] md:h-[60px] md:w-[60px] lg:h-[80px] lg:w-[80px] border-[0.5px] border-solid border-[#ffffff44] hover:border-[#FFFFFF] rounded-full flex items-center justify-center text-[16px] leading-[18.34px] md:text-[24px] md:leading-[27.5px] font-bellefair " +
                           (active.id === id
                             ? "bg-[#FFFFFF] text-black"
                             : "text-[#FFFFFF]")
@@ -86,12 +86,12 @@ function Technology() {
                 </div>
                 <div className="w-full lg:w-1/2 text-center lg:text-left">
                   <img
-                    className="lg:hidden h-[170px] w-screen md:h-[310px] mx-auto mt-[2rem] md:mt-[3.5rem] object-cover"
+                    className="animate-fadeIn  lg:hidden h-[170px] w-screen md:h-[310px] mx-auto mt-[2rem] md:mt-[3.5rem] object-cover"
                     src={active.images?.landscape}
                     alt={active.name}
                   />
-                  <img
-                    className="hidden lg:block h-[527px] w-[520px] ml-auto my-auto object-contain"
+                  <img key={active.images?.portrait}
+                    className="animate-fadeIn hidden lg:block h-[527px] w-[520px] ml-auto my-auto object-contain"
                     src={active.images?.portrait}
                     alt={active.name}
                   />
